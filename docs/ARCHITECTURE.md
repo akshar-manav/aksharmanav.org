@@ -1,6 +1,6 @@
 # Provisional architecture v0.1
 
-Status: **Proposed; decision not yet locked**
+Status: **Proposed; production host not selected**
 
 ## Product architecture
 
@@ -20,10 +20,10 @@ Automated off-site backups
 
 ## Proposed deployment
 
-- **Application platform:** Railway, subject to a cost and operational proof.
-- **Application:** supported Joomla 6 release, subject to hosting and extension compatibility.
-- **Runtime:** supported PHP version.
-- **Database:** supported MySQL 8 release.
+- **Application platform:** no production host selected; Railway is the first proof candidate.
+- **Application:** current supported Joomla 6 patch, pinned and updated through review.
+- **Runtime:** PHP 8.4 foundation target.
+- **Database:** MySQL 8.4 foundation target.
 - **Edge:** Cloudflare Free for DNS, TLS, caching and baseline protection.
 - **Source:** this GitHub repository.
 - **Media:** persistent runtime storage initially, with a portable migration path.
@@ -64,7 +64,11 @@ Do not commit:
 - documented rollback;
 - low baseline resource use.
 
-## Decision still required
+## Hosting proof decision
+
+See [ADR-0001](DECISIONS/ADR-0001-hosting-proof-direction.md). It proposes a free local foundation followed by a separately approved Railway proof and a verified shared-host comparison. It does not authorise infrastructure creation or select a production host.
+
+## Evidence still required
 
 Before implementation, record an architecture decision covering:
 
@@ -76,4 +80,4 @@ Before implementation, record an architecture decision covering:
 6. comparison with one credible low-cost shared-hosting alternative;
 7. recovery and migration procedure.
 
-Railway is currently the leading option, not an irreversible commitment.
+Railway remains a proof candidate, not an irreversible commitment or production selection.

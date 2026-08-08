@@ -6,7 +6,7 @@ Akshar Manav's work began as an informal movement in 1981 and the organisation w
 
 ## Current status
 
-This repository is at the project-foundation stage. Joomla implementation and production deployment have not begun.
+The project, rights and hosting-proof foundations are established. Gate 2 begins with a reproducible local Joomla foundation. Joomla implementation and production deployment have not begun, and no production host has been selected.
 
 See:
 
@@ -17,11 +17,13 @@ See:
 - [Provisional architecture](docs/ARCHITECTURE.md)
 - [Release process](docs/RELEASE_PROCESS.md)
 - [Initial backlog](docs/BACKLOG.md)
+- [Rights and licensing boundary](RIGHTS_AND_LICENSING.md)
+- [Hosting proof direction](docs/DECISIONS/ADR-0001-hosting-proof-direction.md)
 
 ## Authority and participation
 
 Ajinkya Kinhikar is the current product owner and final website release authority. Akshar Manav's wider working model is intended to be decentralised, democratic and open to meaningful participation. Website contributions, translations, reviews and proposals should therefore be transparent and reviewable, with clear accountability for production releases.
 
-## Licence
+## Licence and rights
 
-A licence has not yet been selected. Until a licence is added, copyright remains with the respective rights holders and reuse is not automatically granted.
+Original software in this repository is licensed under `GPL-2.0-or-later`, matching Joomla's licence. The software licence does not cover organisational writing, translations, photographs, archives, logos, personal data or third-party material. See [Rights and licensing boundary](RIGHTS_AND_LICENSING.md) before reuse or contribution.
