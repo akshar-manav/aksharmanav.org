@@ -6,7 +6,9 @@ Akshar Manav's work began as an informal movement in 1981 and the organisation w
 
 ## Current status
 
-The project, rights and hosting-proof foundations are established. Gate 2 begins with a reproducible local Joomla foundation. Joomla implementation and production deployment have not begun, and no production host has been selected.
+The project, rights and hosting-proof foundations are established. The repository provides a pinned, local-only Joomla development foundation for Gate 2. Production deployment has not begun, and no production host has been selected.
+
+To prepare the local Joomla 6.1.2, PHP 8.4 and MySQL 8.4 environment, follow the [local development guide](docs/LOCAL_DEVELOPMENT.md). Local startup does not deploy or create external infrastructure.
 
 See:
 
@@ -19,6 +21,7 @@ See:
 - [Initial backlog](docs/BACKLOG.md)
 - [Rights and licensing boundary](RIGHTS_AND_LICENSING.md)
 - [Hosting proof direction](docs/DECISIONS/ADR-0001-hosting-proof-direction.md)
+- [Local development](docs/LOCAL_DEVELOPMENT.md)
 
 ## Authority and participation
 
