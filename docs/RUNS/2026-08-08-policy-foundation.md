@@ -18,35 +18,40 @@ Prepare the first reviewable part of the `v0.2.0` engineering foundation without
 - rechecked current official Joomla release and technical requirements;
 - rechecked Railway plans, resource pricing, persistence, backup, networking, SMTP, scheduling, rollback and regional constraints;
 - compared Railway with an advertised low-cost Indian Joomla-hosting route;
-- selected `GPL-2.0-or-later` for original software, subject to acceptance of this checkpoint;
+- selected `GPL-2.0-or-later` for original software;
 - separated software rights from organisational content, translations, media, archives, brand and personal data;
-- added concise agent instructions and conservative project-level OpenCode permissions;
-- proposed local-first development and a later, separately approved hosting proof.
+- added concise agent instructions and conservative project-level automation permissions;
+- adopted local-first development and a later, separately approved hosting proof.
 
 ## Validation
 
-- all JSON in `opencode.jsonc` parsed successfully;
-- OpenCode configuration fields checked against official configuration, rules and permission documentation current on 2026-08-08;
-- destructive shell commands, all Git pushes, external-directory access, subagents, external MCP tools and deployment CLIs are denied by project policy;
-- no model/provider is forced, preserving the user's selected zero-cost model;
-- licence text and policy boundary reviewed together;
-- complete branch diff inspected;
-- no secrets, personal data, production configuration or source PDF added.
+- `opencode.jsonc` parsed successfully;
+- configuration fields were checked against the official schema, rules and permission documentation current on 2026-08-08;
+- destructive shell commands, Git pushes, external-directory access, subagents, external MCP tools and deployment CLIs are denied by project policy;
+- licence text and policy boundary were reviewed together;
+- the complete branch diff was inspected;
+- current Joomla, Railway and shared-host claims were rechecked against their cited primary/provider sources;
+- no secrets, personal data, production configuration or source PDF were added.
 
 ## Explicitly not performed
 
 - no Joomla/PHP/database image built or run;
-- no Railway or shared-host account/resource created;
+- no Railway or shared-host account or resource created;
 - no cost incurred;
 - no DNS, domain, email or Cloudflare change;
 - no content or media relicensed;
-- no deployment or merge.
+- no deployment.
+
+## Decision outcome
+
+- `GPL-2.0-or-later` accepted for original repository software;
+- non-software rights remain outside the software licence unless explicitly licensed;
+- ADR-0001 accepted;
+- no production host selected or authorised.
 
 ## Remaining decisions
 
-- product-owner acceptance of the licence and rights boundary;
-- acceptance or revision of ADR-0001;
-- legal confirmation if organisational material will receive an open-content licence;
+- legal confirmation if specified organisational material will receive an open-content licence;
 - exact local container and backup/restore implementation in the next PR;
 - hosting selection only after executable proof and a verified offer.
 
