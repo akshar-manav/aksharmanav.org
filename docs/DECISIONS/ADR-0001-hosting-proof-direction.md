@@ -1,6 +1,6 @@
 # ADR-0001: Hosting proof direction
 
-- **Status:** Proposed
+- **Status:** Accepted
 - **Date:** 2026-08-08
 - **Decision owner:** Ajinkya Kinhikar
 - **Scope:** Gate 2 engineering and infrastructure proof; no production-host approval
@@ -63,7 +63,7 @@ The public sales page does not prove every Joomla 6 requirement. Before purchase
 
 Other shared hosts may be substituted through the same checklist. Introductory prices requiring long prepayment must not be compared with Railway as though they were month-to-month commitments.
 
-## Proposed decision
+## Decision
 
 1. **Select no production host yet.**
 2. Build and verify the portable local Joomla foundation first at zero infrastructure cost.
