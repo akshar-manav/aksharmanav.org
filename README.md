@@ -6,7 +6,7 @@ Akshar Manav's work began as an informal movement in 1981 and the organisation w
 
 ## Current status
 
-The accepted project foundation is complete. The `v0.2.0` policy and engineering foundation is now being prepared. Joomla implementation and production deployment have not begun.
+The project, rights and hosting-proof foundations are established. Gate 2 begins with a reproducible local Joomla foundation. Joomla implementation and production deployment have not begun, and no production host has been selected.
 
 See:
 
