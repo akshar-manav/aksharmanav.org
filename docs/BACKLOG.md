@@ -5,25 +5,25 @@ Status: **Foundation backlog; priorities subject to product-owner review**
 ## Completed
 
 1. Project foundation reviewed and merged through PR #1.
+2. Software licensing, non-software rights boundary, hosting-proof direction and agent operating layer accepted through PR #2.
 
 ## Current checkpoint
 
-1. Review and accept the software licence, content/media rights boundary, hosting-proof ADR and agent operating layer.
+1. Create the reproducible local Joomla 6.1/PHP 8.4/MySQL 8.4 foundation.
 
 ## Next
 
-1. Create the reproducible local Joomla 6.1/PHP 8.4/MySQL 8.4 foundation.
-2. Add baseline automated, security and configuration checks.
-3. Prove database and media backup/restore locally.
-4. Obtain current registration evidence and verify `130007/96`.
-5. Build the canonical Marathi and English organisational foundation.
-6. Inventory the temporary Lovable site and classify reusable, incorrect and missing content.
-7. Define Phase 1 information architecture.
-8. Define contributor roles and Joomla editorial permissions.
-9. Run a separately approved Railway proof and verify one shared-host offer.
-10. Select staging/production hosting only from measured evidence.
-11. Begin the brand foundation and authentic-media audit.
-12. Implement Phase 1 through small reviewable releases.
+1. Add baseline automated, security and configuration checks.
+2. Prove database and media backup/restore locally.
+3. Obtain current registration evidence and verify `130007/96`.
+4. Build the canonical Marathi and English organisational foundation.
+5. Inventory the temporary Lovable site and classify reusable, incorrect and missing content.
+6. Define Phase 1 information architecture.
+7. Define contributor roles and Joomla editorial permissions.
+8. Run a separately approved Railway proof and verify one shared-host offer.
+9. Select staging/production hosting only from measured evidence.
+10. Begin the brand foundation and authentic-media audit.
+11. Implement Phase 1 through small reviewable releases.
 
 ## Later
 
