@@ -51,6 +51,22 @@ Do not commit:
 - backups;
 - generated caches or dependencies.
 
+## Local foundation
+
+The Gate 2 local environment is defined in `compose.yaml` and remains independent of any hosting provider:
+
+- Joomla `6.1.2` with PHP `8.4` and Apache from the official `joomla:6.1.2-php8.4-apache` image;
+- MySQL `8.4.11` from the official `mysql:8.4.11` image;
+- a loopback-only HTTP port, with no database port exposed to the host;
+- separate named volumes for the Joomla runtime tree and MySQL data;
+- neutral local auto-install values supplied only through a Git-ignored `.env` file;
+- service-level database and HTTP health checks;
+- local PHP settings that meet Joomla's recommended 256 MB memory limit.
+
+The Joomla named volume contains core runtime files, uploads, caches, logs, temporary files and `configuration.php`. It is not source control. Future reviewed custom templates and extensions will be tracked separately so that custom code can be packaged without committing runtime state or secrets.
+
+This layout preserves migration to ordinary compatible PHP/MySQL hosting: the portable application state remains the Joomla filesystem plus a database export. Backup/restore proof, production configuration and host-specific packaging are later checkpoints.
+
 ## Engineering principles
 
 - minimal third-party extensions;

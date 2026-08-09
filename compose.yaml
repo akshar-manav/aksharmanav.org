@@ -1,0 +1,73 @@
+name: ${COMPOSE_PROJECT_NAME:-akshar_manav_local}
+
+services:
+  db:
+    image: mysql:8.4.11
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: "${JOOMLA_DB_NAME:?Set JOOMLA_DB_NAME in .env}"
+      MYSQL_USER: "${JOOMLA_DB_USER:?Set JOOMLA_DB_USER in .env}"
+      MYSQL_PASSWORD: "${JOOMLA_DB_PASSWORD:?Set JOOMLA_DB_PASSWORD in .env}"
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in .env}"
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - backend
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - >-
+          mysqladmin ping --host=127.0.0.1 --user="$${MYSQL_USER}"
+          --password="$${MYSQL_PASSWORD}" --silent
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+
+  joomla:
+    image: joomla:6.1.2-php8.4-apache
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:${JOOMLA_HTTP_PORT:-8080}:80"
+    environment:
+      JOOMLA_DB_HOST: db:3306
+      JOOMLA_DB_TYPE: mysqli
+      JOOMLA_DB_NAME: "${JOOMLA_DB_NAME:?Set JOOMLA_DB_NAME in .env}"
+      JOOMLA_DB_USER: "${JOOMLA_DB_USER:?Set JOOMLA_DB_USER in .env}"
+      JOOMLA_DB_PASSWORD: "${JOOMLA_DB_PASSWORD:?Set JOOMLA_DB_PASSWORD in .env}"
+      JOOMLA_SITE_NAME: "${JOOMLA_SITE_NAME:?Set JOOMLA_SITE_NAME in .env}"
+      JOOMLA_ADMIN_USER: "${JOOMLA_ADMIN_USER:?Set JOOMLA_ADMIN_USER in .env}"
+      JOOMLA_ADMIN_USERNAME: "${JOOMLA_ADMIN_USERNAME:?Set JOOMLA_ADMIN_USERNAME in .env}"
+      JOOMLA_ADMIN_PASSWORD: "${JOOMLA_ADMIN_PASSWORD:?Set JOOMLA_ADMIN_PASSWORD in .env}"
+      JOOMLA_ADMIN_EMAIL: "${JOOMLA_ADMIN_EMAIL:?Set JOOMLA_ADMIN_EMAIL in .env}"
+    volumes:
+      - joomla_data:/var/www/html
+      - ./docker/php/local.ini:/usr/local/etc/php/conf.d/zz-local.ini:ro
+    networks:
+      - default
+      - backend
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - >-
+          test -f /var/www/html/configuration.php &&
+          php -r '$$body = @file_get_contents("http://127.0.0.1/");
+          exit($$body === false ? 1 : 0);'
+      interval: 15s
+      timeout: 10s
+      retries: 12
+      start_period: 90s
+
+volumes:
+  joomla_data:
+  mysql_data:
+
+networks:
+  backend:
+    internal: true
