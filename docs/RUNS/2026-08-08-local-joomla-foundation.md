@@ -38,9 +38,11 @@ The accepted Joomla/PHP/MySQL baseline therefore required no architecture-record
 
 No Joomla extension, page builder, organisational content, personal data, media, source PDF or production configuration was added.
 
-## Validation environment
+## Validation
 
-The available validation environment did not provide Docker, Docker Compose, Podman, PHP or MySQL executables. No container image was pulled and no runtime was started there.
+### Initial static validation — 2026-08-08
+
+The initial validation environment did not provide Docker, Docker Compose, Podman, PHP or MySQL executables. No container image was pulled and no runtime was started there.
 
 Validation performed:
 
@@ -50,7 +52,33 @@ Validation performed:
 - complete branch diff inspection and whitespace/error checking;
 - scan for ambiguous image tags, accidental secrets, personal data, deployment configuration and out-of-scope tooling language.
 
-Docker Compose parsing, image pulls, image digest capture, automatic Joomla installation, service health and browser response remain pending executable Windows/Docker evidence before acceptance.
+### Windows executable proof — 2026-08-09
+
+A clean checkout of commit `eaed8118b3ee3bb288a6b97285b1ca479ad5658f` was verified with Docker Desktop 4.85.0, Docker Engine 29.6.2 and Docker Compose v5.3.1 using the WSL2 backend.
+
+Executable results:
+
+| Check | Result |
+|---|---|
+| Static safety checker and Compose parsing | Passed |
+| Joomla image | `joomla:6.1.2-php8.4-apache` |
+| Joomla resolved digest | `sha256:fcb334140a3c1ae9b93660a645d46c13bb6b46ba809a49768472115211710e9b` |
+| MySQL image | `mysql:8.4.11` |
+| MySQL resolved digest | `sha256:b3b90af2a6552ae30c266fdb7d5dd55f3afb72404bb78d37fe8a23eb857fd3fb` |
+| Joomla runtime | `Joomla! 6.1.2 (debug: No)` |
+| PHP runtime | `PHP 8.4.24 (cli)` |
+| PHP memory limit | `256M` |
+| MySQL runtime | `8.4.11` Community Server GPL |
+| Database health | Healthy |
+| Joomla health | Healthy |
+| Public local endpoint | HTTP 200 at `http://127.0.0.1:8080` |
+| Administrator endpoint | HTTP 200 at `http://127.0.0.1:8080/administrator` |
+| MySQL host exposure | No host port published |
+| Restart persistence | Joomla and administrator endpoints returned HTTP 200 after `docker compose down` and recreation |
+| Final state | Containers stopped; Joomla and MySQL named volumes retained |
+| Repository state | Clean; local `.env` remained ignored |
+
+No tracked file required correction during the independent executable review. The runtime foundation passed the defined local checks and remains awaiting product-owner acceptance and merge.
 
 ## Explicitly not performed
 
