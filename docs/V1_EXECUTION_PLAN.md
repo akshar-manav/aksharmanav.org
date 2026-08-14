@@ -19,16 +19,17 @@ The engineering foundation exists:
 - Windows runtime proof;
 - local persistence proof;
 - successful local database and uploaded-media backup/restore rehearsal;
+- merged local backup/restore implementation and dated recovery evidence;
 - accepted product, publishing, rights and architecture foundations.
 
 The major missing work is now product architecture, design, editorial setup, representative content, staging and production delivery.
 
-## Phase A — close and stabilise the foundation
+## Phase A — stabilise the product foundation
 
-1. Merge the reviewed local backup/restore implementation after final repository verification.
-2. Keep `PROJECT_HUB.md`, this execution plan and the backlog aligned with reality.
-3. Preserve Joomla-first architecture; do not introduce a separate frontend framework without a specific accepted need.
-4. Keep production hosting unselected until a real application slice can be measured.
+1. Keep `PROJECT_HUB.md`, this execution plan and the backlog aligned with reality.
+2. Preserve Joomla-first architecture; do not introduce a separate frontend framework without a specific accepted need.
+3. Keep production hosting unselected until a real application slice can be measured.
+4. Complete the first-pass information architecture, editorial roles and design inputs before adding more infrastructure complexity.
 
 **Exit condition:** foundation documentation matches the executable local state and there is no ambiguity about the immediate product work.
 
