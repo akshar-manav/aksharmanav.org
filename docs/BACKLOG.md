@@ -13,13 +13,14 @@ See [PROJECT_HUB.md](PROJECT_HUB.md) for the canonical current-state summary and
 3. Reproducible local Joomla 6.1.2 / PHP 8.4 / MySQL 8.4 Docker foundation established and proven through PR #3.
 4. Local persistence across container recreation proven.
 5. Local Joomla database and uploaded-media backup/restore rehearsal executed successfully; proof article and proof media survived restoration.
+6. Backup/restore implementation and dated recovery evidence merged through PR #4.
 
 ## Current checkpoint
 
-1. Close the reviewed backup/restore implementation in GitHub.
-2. Define Phase 1 information architecture and Joomla content model.
-3. Define contributor, editor, translator, publisher and administrator roles.
-4. Begin the actual UX, visual-design and brand-foundation work.
+1. Define Phase 1 information architecture and Joomla content model.
+2. Define contributor, editor, translator, publisher and administrator roles.
+3. Begin the actual UX, visual-design and brand-foundation work.
+4. Prepare representative approved Marathi/English content and authentic media for design.
 5. Build one representative real Joomla vertical slice before further infrastructure expansion.
 
 ## Next
