@@ -37,15 +37,16 @@ Do not promote an older chat suggestion into an accepted decision merely because
 - Reproducible local Joomla foundation established with Docker.
 - Local foundation proven on Windows with Joomla 6.1.2, PHP 8.4 and MySQL 8.4.
 - Local database and uploaded-media backup/restore rehearsal completed successfully.
+- Backup/restore implementation and dated recovery evidence merged through PR #4.
 - Marathi and English are the initial editorial languages; architecture must allow additional languages later.
 
 ### In progress
 
-- Close the backup/restore checkpoint in the repository.
-- Bring project-status documentation up to date.
+- Bring project-status documentation up to date through the project-boundary/status checkpoint.
 - Define the Phase 1 information architecture and Joomla content model.
 - Define contributor/editor/translator/publisher roles and permissions.
 - Begin the actual UX, visual-design and brand-foundation work.
+- Prepare representative approved Marathi/English content and authentic media for the first design slice.
 
 ### Not yet done
 
