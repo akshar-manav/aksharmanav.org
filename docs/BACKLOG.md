@@ -1,31 +1,45 @@
-# Initial backlog
+# Website backlog
 
-Status: **Foundation backlog; priorities subject to product-owner review**
+Status: **Active website/publishing-platform backlog**
+
+Last reviewed: 2026-08-14
+
+See [PROJECT_HUB.md](PROJECT_HUB.md) for the canonical current-state summary and [V1_EXECUTION_PLAN.md](V1_EXECUTION_PLAN.md) for sequencing.
 
 ## Completed
 
 1. Project foundation reviewed and merged through PR #1.
 2. Software licensing, non-software rights boundary, hosting-proof direction and agent operating layer accepted through PR #2.
+3. Reproducible local Joomla 6.1.2 / PHP 8.4 / MySQL 8.4 Docker foundation established and proven through PR #3.
+4. Local persistence across container recreation proven.
+5. Local Joomla database and uploaded-media backup/restore rehearsal executed successfully; proof article and proof media survived restoration.
+6. Backup/restore implementation and dated recovery evidence merged through PR #4.
 
 ## Current checkpoint
 
-1. Create the reproducible local Joomla 6.1/PHP 8.4/MySQL 8.4 foundation.
+1. Define Phase 1 information architecture and Joomla content model.
+2. Define contributor, editor, translator, publisher and administrator roles.
+3. Begin the actual UX, visual-design and brand-foundation work.
+4. Prepare representative approved Marathi/English content and authentic media for design.
+5. Build one representative real Joomla vertical slice before further infrastructure expansion.
 
 ## Next
 
-1. Add baseline automated, security and configuration checks.
-2. Prove database and media backup/restore locally.
-3. Obtain current registration evidence and verify `130007/96`.
-4. Build the canonical Marathi and English organisational foundation.
-5. Inventory the temporary Lovable site and classify reusable, incorrect and missing content.
-6. Define Phase 1 information architecture.
-7. Define contributor roles and Joomla editorial permissions.
-8. Run a separately approved Railway proof and verify one shared-host offer.
-9. Select staging/production hosting only from measured evidence.
-10. Begin the brand foundation and authentic-media audit.
-11. Implement Phase 1 through small reviewable releases.
+1. Obtain current registration evidence and verify `130007/96` before legal/public presentation.
+2. Build the canonical Marathi and English organisational foundation for Phase 1.
+3. Inventory the temporary Lovable site and classify reusable, incorrect and missing content.
+4. Define navigation, content types, taxonomies and representative publishing journeys.
+5. Define Joomla editorial roles, permissions and multilingual workflow.
+6. Audit authentic photography, archives and media rights.
+7. Establish Marathi/English typography and the core visual/motion system.
+8. Implement homepage + navigation + one essay/article + one initiative/event page as the first vertical slice.
+9. Expand the accepted design system across remaining Phase 1 pages and publishing templates.
+10. Run a separately approved hosting proof against the representative application and compare with at least one credible Joomla-compatible alternative.
+11. Select and deploy staging only from measured evidence.
+12. Conduct staging editorial/design/accessibility/performance acceptance.
+13. Select production hosting, verify production backup/rollback, and release v1 through the accepted release process.
 
-## Later
+## Later website/platform capabilities
 
 - additional language editions;
 - district, taluka, village and international group pages;
@@ -34,12 +48,25 @@ Status: **Foundation backlog; priorities subject to product-owner review**
 - contributor onboarding;
 - event registration;
 - public data and research infrastructure;
-- broader community capabilities.
+- richer community capabilities when justified.
 
-## Explicitly parked
+## Explicitly outside this website backlog
+
+These belong to the parent Akshar Manav organisational project unless a website requirement arises:
+
+- day-to-day social-media management;
+- language-specific Facebook/Instagram/YouTube channel operations;
+- general event/project management;
+- department operations;
+- magazine production management;
+- outreach/partnership administration;
+- internal organisational people management.
+
+## Explicitly parked for the website
 
 - full social network;
-- donations;
-- automatic mass translation;
+- donations/payment system;
+- automatic mass translation/auto-publication;
 - complex membership system;
-- separate mobile applications.
+- separate mobile applications;
+- a separate headless frontend unless a concrete later requirement justifies it.
