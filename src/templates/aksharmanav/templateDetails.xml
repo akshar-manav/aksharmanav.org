@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="template" client="site" method="upgrade">
+  <name>tpl_aksharmanav</name>
+  <version>0.2.0</version>
+  <creationDate>2026-08-17</creationDate>
+  <author>Akshar Manav website project</author>
+  <authorEmail>admin@aksharmanav.org</authorEmail>
+  <copyright>Copyright Akshar Manav</copyright>
+  <license>GPL-2.0-or-later</license>
+  <description>TPL_AKSHARMANAV_XML_DESCRIPTION</description>
+  <parent>cassiopeia</parent>
+  <files>
+    <filename>index.php</filename>
+    <filename>templateDetails.xml</filename>
+    <folder>css</folder>
+    <folder>js</folder>
+    <folder>images</folder>
+    <folder>language</folder>
+  </files>
+  <positions>
+    <position>brand</position>
+    <position>primary-menu</position>
+    <position>language-switcher</position>
+    <position>breadcrumbs</position>
+    <position>home-identity</position>
+    <position>home-featured-event</position>
+    <position>home-work-areas</position>
+    <position>home-initiatives</position>
+    <position>home-thought</position>
+    <position>home-publication</position>
+    <position>home-participate</position>
+    <position>before-component</position>
+    <position>after-component</position>
+    <position>footer-primary</position>
+    <position>footer-secondary</position>
+    <position>debug</position>
+  </positions>
+  <languages folder="language">
+    <language tag="en-GB">en-GB/tpl_aksharmanav.ini</language>
+    <language tag="en-GB">en-GB/tpl_aksharmanav.sys.ini</language>
+  </languages>
+  <config>
+    <fields name="params">
+      <fieldset name="advanced">
+        <field
+          name="contentWidth"
+          type="list"
+          default="wide"
+          label="TPL_AKSHARMANAV_FIELD_CONTENT_WIDTH_LABEL"
+          description="TPL_AKSHARMANAV_FIELD_CONTENT_WIDTH_DESC"
+        >
+          <option value="reading">TPL_AKSHARMANAV_FIELD_CONTENT_WIDTH_READING</option>
+          <option value="wide">TPL_AKSHARMANAV_FIELD_CONTENT_WIDTH_WIDE</option>
+          <option value="full">TPL_AKSHARMANAV_FIELD_CONTENT_WIDTH_FULL</option>
+        </field>
+      </fieldset>
+    </fields>
+  </config>
+</extension>
