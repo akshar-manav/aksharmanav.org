@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <extension type="template" client="site" method="upgrade">
   <name>tpl_aksharmanav</name>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
   <creationDate>2026-08-17</creationDate>
   <author>Akshar Manav website project</author>
   <authorEmail>admin@aksharmanav.org</authorEmail>

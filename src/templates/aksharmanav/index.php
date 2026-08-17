@@ -19,6 +19,25 @@ $siteName  = htmlspecialchars((string) $app->get('sitename'), ENT_QUOTES, 'UTF-8
 $menu      = $app->getMenu()->getActive();
 $pageClass = $menu ? (string) $menu->getParams()->get('pageclass_sfx', '') : '';
 $width     = (string) $this->params->get('contentWidth', 'wide');
+$isHome    = $menu && (bool) $menu->home;
+
+$homePositions = [
+    'home-identity',
+    'home-featured-event',
+    'home-work-areas',
+    'home-initiatives',
+    'home-thought',
+    'home-publication',
+    'home-participate',
+];
+$hasHomeModules = false;
+
+foreach ($homePositions as $position) {
+    if ($this->countModules($position)) {
+        $hasHomeModules = true;
+        break;
+    }
+}
 
 $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
 
@@ -76,7 +95,7 @@ $wa->usePreset('template.cassiopeia.' . ($this->direction === 'rtl' ? 'rtl' : 'l
     </div>
   </header>
 
-  <?php if ($this->countModules('breadcrumbs')) : ?>
+  <?php if (!$isHome && $this->countModules('breadcrumbs')) : ?>
     <div class="am-shell am-breadcrumbs">
       <jdoc:include type="modules" name="breadcrumbs" style="none" />
     </div>
@@ -85,17 +104,6 @@ $wa->usePreset('template.cassiopeia.' . ($this->direction === 'rtl' ? 'rtl' : 'l
   <jdoc:include type="message" />
 
   <main id="am-main" tabindex="-1">
-    <?php
-    $homePositions = [
-        'home-identity',
-        'home-featured-event',
-        'home-work-areas',
-        'home-initiatives',
-        'home-thought',
-        'home-publication',
-        'home-participate',
-    ];
-    ?>
     <?php foreach ($homePositions as $position) : ?>
       <?php if ($this->countModules($position)) : ?>
         <section class="am-home-section am-home-section--<?php echo htmlspecialchars(substr($position, 5), ENT_QUOTES, 'UTF-8'); ?>" data-am-position="<?php echo htmlspecialchars($position, ENT_QUOTES, 'UTF-8'); ?>">
@@ -112,9 +120,11 @@ $wa->usePreset('template.cassiopeia.' . ($this->direction === 'rtl' ? 'rtl' : 'l
       </div>
     <?php endif; ?>
 
-    <div class="am-shell am-component">
-      <jdoc:include type="component" />
-    </div>
+    <?php if (!$isHome || !$hasHomeModules) : ?>
+      <div class="am-shell am-component">
+        <jdoc:include type="component" />
+      </div>
+    <?php endif; ?>
 
     <?php if ($this->countModules('after-component')) : ?>
       <div class="am-shell am-after-component">

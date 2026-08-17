@@ -10,6 +10,12 @@ From the repository root:
 python scripts/build-template-package.py
 ```
 
+On Windows systems where Python is exposed through the launcher, use:
+
+```powershell
+py scripts/build-template-package.py
+```
+
 This validates the manifest, required files, module positions and a small set of secret/configuration markers, then creates the Git-ignored package:
 
 ```text
@@ -26,6 +32,27 @@ build/tpl_aksharmanav.zip
 6. Set **Akshar Manav** as the default site template.
 
 This changes only the local Joomla instance. It does not deploy or change production.
+
+## Populate the representative editable homepage
+
+After the template is installed and the local stack is running, use the idempotent local bootstrap:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/bootstrap-local-homepage.ps1
+```
+
+The wrapper:
+
+1. verifies that local Joomla is ready;
+2. creates a timestamped database backup under the Git-ignored `backups/` directory;
+3. synchronizes the current tracked template source into the installed local template;
+4. runs PHP lint against the installed template before changing the database;
+5. moves the existing Joomla menu module to `primary-menu`;
+6. creates or updates representative Custom modules in the homepage positions;
+7. assigns homepage modules only to the current Home menu item;
+8. leaves all seeded wording editable under **Content → Site Modules**.
+
+The bootstrap uses stable markers and may be rerun without creating duplicate modules. Its template synchronization is for the existing local development installation; the installable ZIP remains the release artifact. The seeded modules are local preview data, not a production content migration. Time-sensitive event details still require editorial review before release.
 
 ## Make content editable
 
