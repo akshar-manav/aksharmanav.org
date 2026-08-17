@@ -54,6 +54,12 @@ The wrapper:
 
 The bootstrap uses stable markers and may be rerun without creating duplicate modules. Its template synchronization is for the existing local development installation; the installable ZIP remains the release artifact. The seeded modules are local preview data, not a production content migration. Time-sensitive event details still require editorial review before release.
 
+## Visual identity checkpoint
+
+The representative homepage now uses the source-traced eight-form-and-flame symbol, the supplied Sitakhandi Wakad event photograph and the working rules in [`BRAND_SYSTEM.md`](BRAND_SYSTEM.md). The colour values are sampled from the available logo artwork and remain replaceable when an official high-resolution master is supplied.
+
+The local preview intentionally uses authentic photography only. It does not ship AI-generated people or generic event scenes. The Maanus Sammelan map link is clearly marked provisional until the venue pin is confirmed.
+
 ## Make content editable
 
 Use **Content → Site Modules** to place core Joomla modules in the positions recorded in `EDITABLE_JOOMLA_CONTENT_MODEL.md`.

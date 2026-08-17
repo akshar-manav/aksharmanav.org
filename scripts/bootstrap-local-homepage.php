@@ -79,7 +79,7 @@ try {
     if ($menuModuleId > 0) {
         $statement = $database->prepare(
             "UPDATE `{$prefix}modules` "
-            . "SET position = 'primary-menu', published = 1, showtitle = 0 "
+            . "SET position = 'primary-menu', published = 0, showtitle = 0 "
             . "WHERE id = ?"
         );
         $statement->bind_param('i', $menuModuleId);
@@ -89,6 +89,23 @@ try {
 
     $modules = [
         [
+            'marker' => 'AM_LOCAL_HOME_V2:navigation',
+            'title' => 'Akshar Manav homepage navigation',
+            'position' => 'primary-menu',
+            'allPages' => true,
+            'ordering' => 1,
+            'content' => <<<'HTML'
+<ul class="am-nav-list">
+  <li><a href="#am-identity">ओळख</a></li>
+  <li><a href="#am-current-event">संमेलन १७</a></li>
+  <li><a href="#am-work">कार्य</a></li>
+  <li><a href="#am-thought">विचार</a></li>
+  <li><a href="#am-publication">ई-मासिक</a></li>
+  <li><a class="am-nav-list__cta" href="#am-participate">सहभाग</a></li>
+</ul>
+HTML,
+        ],
+        [
             'marker' => 'AM_LOCAL_HOME_V1:brand',
             'title' => 'Akshar Manav brand',
             'position' => 'brand',
@@ -96,8 +113,11 @@ try {
             'ordering' => 1,
             'content' => <<<'HTML'
 <a class="am-wordmark" href="/" aria-label="अक्षर मानव — मुख्य पान">
-  <span class="am-wordmark__name">अक्षर मानव</span>
-  <span class="am-wordmark__line">माणसांची संघटना</span>
+  <img class="am-wordmark__symbol" src="/templates/tpl_aksharmanav/images/akshar-manav-symbol.svg" alt="" width="52" height="40">
+  <span class="am-wordmark__text">
+    <span class="am-wordmark__name">अक्षर मानव</span>
+    <span class="am-wordmark__line">विचार · चळवळ · संघटना</span>
+  </span>
 </a>
 HTML,
         ],
@@ -108,15 +128,26 @@ HTML,
             'allPages' => false,
             'ordering' => 1,
             'content' => <<<'HTML'
-<div class="am-hero">
-  <p class="am-kicker">अक्षर मानवची ओळख</p>
-  <h1>अक्षर मानव ही विचार, चळवळ आणि संघटना आहे.</h1>
-  <p class="am-lede">मानवनिर्मित भेदभाव, विषमता, द्वेष आणि दुरावा कमी करत माणूस, समाज आणि निसर्ग यांच्यातील सुसंवाद अधिक समजूतदार करण्याच्या दिशेने अक्षर मानव काम करते.</p>
-  <p class="am-factline"><strong>१९८१</strong> — अनौपचारिक चळवळीची सुरुवात <span aria-hidden="true">·</span> <strong>१९९६</strong> — संस्थेची औपचारिक नोंदणी</p>
-  <div class="am-actions">
-    <a class="am-button" href="#am-current-event">सध्याचा कार्यक्रम</a>
-    <a class="am-text-link" href="#am-initiatives">उपक्रम पाहा</a>
+<div class="am-hero" id="am-identity">
+  <div class="am-hero__copy" data-am-reveal>
+    <p class="am-kicker">अक्षर मानवची ओळख</p>
+    <h1>माणूस केंद्रस्थानी.<br>विचार कृतीत.</h1>
+    <p class="am-lede">अक्षर मानव ही विचार, चळवळ आणि संघटना आहे—मानवनिर्मित भेदभाव, विषमता, द्वेष आणि दुरावा कमी करत माणूस, समाज आणि निसर्ग यांच्यातील सुसंवादासाठी काम करणारी.</p>
+    <p class="am-factline"><strong>१९८१</strong> अनौपचारिक चळवळीची सुरुवात <span aria-hidden="true">/</span> <strong>१९९६</strong> औपचारिक नोंदणी</p>
+    <div class="am-actions">
+      <a class="am-button" href="#am-current-event">सध्याचा कार्यक्रम</a>
+      <a class="am-text-link" href="#am-work">कामाची व्याप्ती</a>
+    </div>
   </div>
+  <figure class="am-hero__mark" data-am-logo-assembly aria-label="आठ स्वतंत्र रूपं आणि कृतीची ज्योत">
+    <img src="/templates/tpl_aksharmanav/images/akshar-manav-symbol.svg" alt="अक्षर मानवचे आठ रंगीत रूपं आणि ज्योत असलेले चिन्ह" width="640" height="498">
+    <figcaption>स्वतंत्र ओळखी. सामूहिक दिशा.</figcaption>
+  </figure>
+</div>
+<div class="am-identity-note" data-am-reveal>
+  <span>रंग वेगळे राहतात.</span>
+  <span>मधली मोकळी जागा सहअस्तित्वाची आहे.</span>
+  <span>ज्योत विचारातून कृतीकडे नेते.</span>
 </div>
 HTML,
         ],
@@ -128,20 +159,27 @@ HTML,
             'ordering' => 1,
             'content' => <<<'HTML'
 <article class="am-event" id="am-current-event">
-  <div class="am-event__intro">
-    <p class="am-kicker">माणूस संमेलन १७ · २१–२३ ऑगस्ट २०२६</p>
-    <h2>तीन दिवस माणूस म्हणून एकत्र येण्याचे</h2>
-    <p class="am-lede">कसलेही भेद मनात न ठेवता, निव्वळ माणूस म्हणून भेटण्यासाठी, बोलण्यासाठी आणि ऐकण्यासाठी अक्षर मानवचे माणूस संमेलन यंदा सीताखांडी वाकद येथे भरत आहे.</p>
-  </div>
-  <dl class="am-event__facts">
-    <div><dt>ठिकाण</dt><dd>सीताखांडी वाकद, ता. भोकर, जि. नांदेड</dd></div>
-    <div><dt>प्रवेशमूल्य</dt><dd>२० ऑगस्टपर्यंत ₹१,५००</dd></div>
-    <div><dt>समाविष्ट</dt><dd>राहणे, जेवणे आणि नाश्ता</dd></div>
-    <div><dt>उपलब्धता</dt><dd>व्यक्तिसंख्या मर्यादित</dd></div>
-  </dl>
-  <div class="am-actions">
-    <a class="am-button" href="https://wa.me/919552907898">WhatsApp वर संदेश पाठवा</a>
-    <span class="am-note">फक्त संदेश; फोन करू नये</span>
+  <figure class="am-event__image" data-am-reveal>
+    <img src="/templates/tpl_aksharmanav/images/manus-sammelan-17-sitakhandi.jpg" alt="सीताखांडी वाकद येथील तलाव, टेकड्या, झाडं आणि राहण्यासाठीची छोटी घरं" width="1536" height="1152" loading="lazy">
+    <figcaption>सीताखांडी वाकद · संमेलनस्थळ</figcaption>
+  </figure>
+  <div class="am-event__content" data-am-reveal>
+    <p class="am-kicker">|| अक्षर मानव माणूस संमेलन, सतरा ||</p>
+    <p class="am-event__date">२१ · २२ · २३ ऑगस्ट २०२६</p>
+    <h2>बदलते स्त्री–पुरुष संबंध</h2>
+    <p class="am-event__subject">अर्थात आपली बदलती घरं आणि आपला बदलता समाज—काल, आज आणि उद्या</p>
+    <p class="am-lede">रम्य टेकड्या, झाडीझाडोरा, दोन नद्यांचा उगम, हिरवाई, तलाव, छोटी घरं, रिमझिम पाऊस, उबीला शेकोटी, गावरान चवीचे जेवण आणि चांगल्या माणसांचा सहवास. तीन दिवस रमायला, बोलायला आणि ऐकायला जरूर या.</p>
+    <dl class="am-event__facts">
+      <div><dt>ठिकाण</dt><dd>सीताखांडी वाकद, ता. भोकर, जि. नांदेड</dd></div>
+      <div><dt>१७–२० ऑगस्ट</dt><dd>₹१,५००</dd></div>
+      <div><dt>संमेलनस्थळी</dt><dd>₹२,०००</dd></div>
+      <div><dt>समाविष्ट</dt><dd>राहणे, जेवणे आणि नाश्ता</dd></div>
+    </dl>
+    <div class="am-actions">
+      <a class="am-button am-button--light" href="https://wa.me/919552907898?text=%E0%A4%AE%E0%A4%B2%E0%A4%BE%20%E0%A4%AE%E0%A4%BE%E0%A4%A3%E0%A5%82%E0%A4%B8%20%E0%A4%B8%E0%A4%82%E0%A4%AE%E0%A5%87%E0%A4%B2%E0%A4%A8%20%E0%A5%A7%E0%A5%AD%20%E0%A4%B8%E0%A4%BE%E0%A4%A0%E0%A5%80%20%E0%A4%A8%E0%A4%BE%E0%A4%B5%E0%A4%A8%E0%A5%8B%E0%A4%82%E0%A4%A6%E0%A4%A3%E0%A5%80%20%E0%A4%95%E0%A4%B0%E0%A4%BE%E0%A4%AF%E0%A4%9A%E0%A5%80%20%E0%A4%86%E0%A4%B9%E0%A5%87." target="_blank" rel="noopener">WhatsApp वर संदेश</a>
+      <a class="am-text-link am-text-link--light" href="https://www.google.com/maps/search/?api=1&amp;query=19.2400012%2C77.5973485" target="_blank" rel="noopener">तात्पुरते Google स्थान</a>
+    </div>
+    <p class="am-note">नावनोंदणी: ९५५२९०७८९८ · फक्त WhatsApp संदेश; फोन नको. नकाशातील स्थान अंतिम खात्रीपर्यंत तात्पुरते आहे.</p>
   </div>
 </article>
 HTML,
@@ -157,9 +195,9 @@ HTML,
   <p class="am-kicker">कामाची व्याप्ती</p>
   <h2>जगण्याशी जोडलेली कार्यक्षेत्रे</h2>
   <p class="am-lede">अक्षर मानवचे काम अनेक विभाग, कार्यक्षेत्रे, उपक्रम आणि कार्यक्रमांमधून पुढे जाते. संपूर्ण अधिकृत यादी संपादकीय पडताळणीनंतर स्वतंत्र पानावर उपलब्ध होईल.</p>
-  <ul class="am-topic-list" aria-label="निवडक कार्यक्षेत्रे">
-    <li>शेती</li><li>शिक्षण</li><li>आरोग्य</li><li>पर्यावरण</li>
-    <li>कला</li><li>साहित्य</li><li>श्रम</li><li>विज्ञान</li>
+  <ul class="am-topic-list" aria-label="निवडक कार्यक्षेत्रे" data-am-reveal>
+    <li><span>०१</span>शेती</li><li><span>०२</span>शिक्षण</li><li><span>०३</span>आरोग्य</li><li><span>०४</span>पर्यावरण</li>
+    <li><span>०५</span>कला</li><li><span>०६</span>साहित्य</li><li><span>०७</span>श्रम</li><li><span>०८</span>विज्ञान</li>
   </ul>
 </div>
 HTML,
@@ -174,11 +212,32 @@ HTML,
 <div id="am-initiatives">
   <p class="am-kicker">निवडक उपक्रम</p>
   <h2>वेगवेगळ्या वाटांनी माणसं जोडणारे कार्यक्रम</h2>
-  <div class="am-card-grid">
+  <div class="am-card-grid" data-am-reveal>
     <article class="am-card"><p class="am-card__type">सातत्यपूर्ण कार्यक्रम</p><h3>अक्षर मानव माणूस संमेलन</h3><p>माणूस म्हणून भेटण्यासाठी आणि संवादासाठी भरवले जाणारे क्रमांकित संमेलन.</p></article>
     <article class="am-card"><p class="am-card__type">वर्ग</p><h3>अक्षर मानव शिवकावणी वर्ग</h3><p>सध्याचे वर्ग, शिक्षक, वेळापत्रक आणि नावनोंदणीची माहिती लवकरच संपादित केली जाईल.</p></article>
     <article class="am-card"><p class="am-card__type">अभिवाचन विभाग</p><h3>अक्षर मानव वाचन अड्डा</h3><p>वाचन, अभिवाचन आणि चर्चेसाठीचा सातत्यपूर्ण उपक्रम.</p></article>
     <article class="am-card"><p class="am-card__type">बाल विभाग</p><h3>अक्षर मानव मस्तीची पाठशाळा</h3><p>मुलांसाठी शिकण्याचा, अनुभवांचा आणि आनंदाचा उपक्रम.</p></article>
+  </div>
+</div>
+HTML,
+        ],
+        [
+            'marker' => 'AM_LOCAL_HOME_V2:thought',
+            'title' => 'विचार',
+            'position' => 'home-thought',
+            'allPages' => false,
+            'ordering' => 1,
+            'content' => <<<'HTML'
+<div class="am-thought" id="am-thought" data-am-reveal>
+  <div>
+    <p class="am-kicker">विचार</p>
+    <blockquote>
+      <p>व्यक्तीची स्वतंत्र ओळख मिटवून नव्हे, तर ती जपत एकत्र येण्यातून सामूहिक दिशा तयार होते.</p>
+    </blockquote>
+  </div>
+  <div class="am-thought__aside">
+    <p>आठ रूपं एकाच रंगात मिसळत नाहीत. त्यांच्या मधली मोकळी जागा आदर, संवाद आणि सहअस्तित्वाची आहे.</p>
+    <p>तळाशी असलेली ज्योत विचाराला कृतीची उब देते.</p>
   </div>
 </div>
 HTML,
@@ -190,13 +249,17 @@ HTML,
             'allPages' => false,
             'ordering' => 1,
             'content' => <<<'HTML'
-<div class="am-publication">
+<div class="am-publication" id="am-publication" data-am-reveal>
   <div>
-    <p class="am-kicker">प्रकाशनं</p>
-    <h2>अक्षर मानवचे वर्तमानपत्र</h2>
-    <p class="am-lede">चळवळीतील विचार, काम, अनुभव आणि बातम्या वाचण्यासाठी सध्याचा डिजिटल अंक उघडा. अंकांचे नाव आणि संग्रह पुढे बदलला तरी स्थिर प्रकाशन रचना कायम ठेवली जाईल.</p>
+    <p class="am-kicker">दरमहा डिजिटल ई-मासिक</p>
+    <h2>अक्षर मानव</h2>
+    <p class="am-publication__meta">विचार · अनुभव · काम · संवाद</p>
+    <p class="am-lede">अक्षर मानवचे दरमहा प्रकाशित होणारे डिजिटल ई-मासिक. चळवळीतील विचार, अनुभव आणि विविध क्षेत्रांतील काम नव्या अंकातून वाचा.</p>
   </div>
-  <a class="am-button" href="https://heyzine.com/flip-book/c741160b0b.html">सध्याचा अंक उघडा</a>
+  <div class="am-publication__action">
+    <span aria-hidden="true">अंक / ०१</span>
+    <a class="am-button" href="https://heyzine.com/flip-book/c741160b0b.html" target="_blank" rel="noopener">सध्याचा अंक वाचा</a>
+  </div>
 </div>
 HTML,
         ],
@@ -207,7 +270,7 @@ HTML,
             'allPages' => false,
             'ordering' => 1,
             'content' => <<<'HTML'
-<div class="am-participate">
+<div class="am-participate" id="am-participate" data-am-reveal>
   <p class="am-kicker">सहभाग</p>
   <h2>आजीव सभासद व्हा</h2>
   <p class="am-lede">₹५०० आजीव सभासद शुल्कासाठी स्वतंत्र आणि सुरक्षित नोंदणी व्यवस्था विकसित होत आहे. पेमेंट सेवा निवडून तिची चाचणी पूर्ण होईपर्यंत संकेतस्थळावर ऑनलाइन शुल्क स्वीकारले जाणार नाही.</p>
@@ -223,8 +286,11 @@ HTML,
             'ordering' => 1,
             'content' => <<<'HTML'
 <div class="am-footer-copy">
-  <p class="am-footer-copy__name">अक्षर मानव</p>
-  <p>माणूस, समाज आणि निसर्ग यांच्यातील सुसंवादासाठी काम करणारी विचारधारा, चळवळ आणि संघटना.</p>
+  <img src="/templates/tpl_aksharmanav/images/akshar-manav-symbol.svg" alt="" width="88" height="68" loading="lazy">
+  <div>
+    <p class="am-footer-copy__name">अक्षर मानव</p>
+    <p>माणूस, समाज आणि निसर्ग यांच्यातील सुसंवादासाठी काम करणारी विचारधारा, चळवळ आणि संघटना.</p>
+  </div>
 </div>
 HTML,
         ],
@@ -251,7 +317,7 @@ HTML,
 
     $database->commit();
     printf(
-        "Homepage bootstrap complete: %d module(s) created, %d updated; menu module moved to primary-menu.\n",
+        "Homepage bootstrap complete: %d module(s) created, %d updated; local preview navigation refreshed.\n",
         $created,
         $updated
     );
