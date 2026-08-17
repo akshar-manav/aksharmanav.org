@@ -10,6 +10,7 @@ $templateSource = Join-Path $repositoryRoot 'src\templates\aksharmanav'
 $backupDirectory = Join-Path $repositoryRoot 'backups\local-homepage-bootstrap'
 $timestamp = Get-Date -Format 'yyyyMMdd-HHmmss'
 $backupFile = Join-Path $backupDirectory "before-homepage-$timestamp.sql"
+$containerBackupFile = "/tmp/aksharmanav-before-homepage-$timestamp.sql"
 $containerScript = '/tmp/aksharmanav-bootstrap-local-homepage.php'
 
 Set-Location $repositoryRoot
@@ -31,11 +32,24 @@ if ($LASTEXITCODE -ne 0) {
 New-Item -ItemType Directory -Force -Path $backupDirectory | Out-Null
 Write-Host "Creating a recoverable database backup at $backupFile ..."
 
-$quotedBackupFile = '"' + $backupFile + '"'
-$dumpCommand = 'docker compose exec -T db sh -lc ''exec mysqldump --single-transaction --no-tablespaces --default-character-set=utf8mb4 --user="$MYSQL_USER" --password="$MYSQL_PASSWORD" "$MYSQL_DATABASE"'' > ' + $quotedBackupFile
-& cmd.exe /d /s /c $dumpCommand
-if ($LASTEXITCODE -ne 0 -or -not (Test-Path $backupFile -PathType Leaf)) {
-    throw 'The pre-change database backup failed. No homepage changes were applied.'
+$dumpCommand = 'exec mysqldump --single-transaction --no-tablespaces --default-character-set=utf8mb4 --user="$MYSQL_USER" --password="$MYSQL_PASSWORD" "$MYSQL_DATABASE" > ' + $containerBackupFile
+
+try {
+    & docker compose exec -T db sh -lc $dumpCommand
+    if ($LASTEXITCODE -ne 0) {
+        throw 'The database container could not create the pre-change backup.'
+    }
+
+    & docker compose cp "db:$containerBackupFile" $backupFile
+    if ($LASTEXITCODE -ne 0 -or -not (Test-Path $backupFile -PathType Leaf)) {
+        throw 'The pre-change database backup could not be copied to the repository backup directory.'
+    }
+}
+catch {
+    throw "The pre-change database backup failed. No homepage changes were applied. $($_.Exception.Message)"
+}
+finally {
+    & docker compose exec -T db rm -f $containerBackupFile | Out-Null
 }
 
 Write-Host 'Synchronizing the reviewed template source into local Joomla...'
